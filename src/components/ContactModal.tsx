@@ -13,6 +13,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Listen for Escape key to close modal
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,18 +46,35 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-200 overflow-hidden"
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-full max-w-lg bg-slate-900 border-2 border-cyan-500/50 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2.5rem)] h-auto"
+        onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+      >
         {/* Top Accent */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-500" />
+        <div className="h-2 bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-500 shrink-0" />
 
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-all"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Close Button Header */}
+        <div className="bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between gap-4 shrink-0 z-10">
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4 text-rose-400" />
+            <span className="text-xs font-black text-rose-400 uppercase tracking-wider">3D Contact Station</span>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="py-1.5 px-3 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 text-white font-black text-xs uppercase tracking-wider flex items-center gap-1 cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+            <span>Close</span>
+          </button>
+        </div>
+
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 overscroll-contain">
 
         {isSubmitted ? (
           <div className="flex flex-col items-center justify-center py-10 text-center animate-in zoom-in-95 duration-200">
@@ -160,6 +189,22 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             </div>
           </>
         )}
+        </div>
+
+        {/* PERMANENT FOOTER */}
+        <div className="p-3.5 px-6 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-4 shrink-0 z-10">
+          <p className="text-xs text-slate-300 font-bold hidden sm:block">
+            Aditya Gupta • Contact Transmission Station
+          </p>
+
+          <button
+            onClick={onClose}
+            className="w-full sm:w-auto py-2.5 px-5 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+          >
+            <X className="w-4 h-4 text-white" />
+            <span>Close Station</span>
+          </button>
+        </div>
       </div>
     </div>
   );

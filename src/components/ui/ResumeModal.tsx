@@ -24,29 +24,30 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-200 overflow-hidden"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl bg-slate-900 border-2 border-cyan-500/50 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[90vh] max-h-[850px]"
+        className="relative w-full max-w-4xl bg-slate-900 border-2 border-cyan-500/50 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2.5rem)] h-auto"
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
       >
         {/* Top Accent Gradient Bar */}
         <div className="h-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 shrink-0" />
 
-        {/* PERMANENT STICKY HEADER - STAYS AT TOP AT ALL TIMES */}
-        <div className="bg-slate-900 border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between gap-4 shrink-0 shadow-lg">
-          <div className="flex items-center gap-3">
+        {/* PERMANENT STICKY HEADER - GUARANTEED 100% VISIBLE AT TOP */}
+        <div className="bg-slate-900 border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between gap-4 shrink-0 shadow-lg z-10">
+          <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-black text-slate-950 text-xl shadow-md shadow-cyan-500/30 shrink-0">
               A
             </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-black text-cyan-400 uppercase tracking-wider">
-                <FileText className="w-4 h-4 text-cyan-400" />
-                <span>OFFICIAL CURRICULUM VITAE</span>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-black text-cyan-400 uppercase tracking-wider">
+                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" />
+                <span className="truncate">OFFICIAL CURRICULUM VITAE</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">{PORTFOLIO_DATA.name}</h2>
-              <p className="text-xs text-cyan-300 font-bold">{PORTFOLIO_DATA.title}</p>
+              <h2 className="text-xl sm:text-3xl font-black text-white tracking-tight truncate">{PORTFOLIO_DATA.name}</h2>
+              <p className="text-xs text-cyan-300 font-bold truncate">{PORTFOLIO_DATA.title}</p>
             </div>
           </div>
 
@@ -61,7 +62,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   alert('Downloading Aditya Gupta Resume PDF...');
                 }
               }}
-              className="py-2.5 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-cyan-500/30 transition-all cursor-pointer"
+              className="py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-cyan-500/30 transition-all cursor-pointer"
             >
               <Download className="w-4 h-4" />
               <span className="hidden sm:inline">Download PDF</span>
@@ -70,7 +71,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             <button
               onClick={onClose}
               title="Close Resume (Esc)"
-              className="py-2.5 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 flex items-center gap-2 cursor-pointer transition-all"
+              className="py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 flex items-center gap-2 cursor-pointer transition-all"
             >
               <X className="w-4 h-4 text-white" />
               <span>Close</span>
@@ -78,8 +79,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
         </div>
 
-        {/* SCROLLABLE BODY CONTENT - ULTRA HIGH CONTRAST BOLD TEXT */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950">
+        {/* SCROLLABLE BODY CONTENT - PROPER FLEX MIN-H-0 SCROLL CONTAINER */}
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950 overscroll-contain">
           {/* Education Section */}
           <div>
             <h3 className="text-xs font-black uppercase tracking-wider text-cyan-400 mb-2 flex items-center gap-1.5">
@@ -138,8 +139,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
         </div>
 
-        {/* PERMANENT FOOTER BAR - ALWAYS VISIBLE WITH RED CLOSE BUTTON */}
-        <div className="p-3.5 px-6 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-4 shrink-0 shadow-inner">
+        {/* PERMANENT FOOTER BAR - GUARANTEED 100% VISIBLE AT BOTTOM */}
+        <div className="p-3.5 px-6 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-4 shrink-0 shadow-inner z-10">
           <p className="text-xs text-slate-200 font-bold hidden sm:block">
             Aditya Gupta • Data Science & ML Engineer Resume
           </p>
