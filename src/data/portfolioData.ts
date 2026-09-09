@@ -1,0 +1,180 @@
+import type { Project, Skill, Milestone, TeleportTarget, CarColor } from '../types';
+
+export const PORTFOLIO_INFO = {
+  name: 'ADITYA GUPTA',
+  title: 'Data Scientist, ML Engineer & Full-Stack Developer',
+  bio: 'Specializing in Data Science & Machine Learning at Lovely Professional University. Building AI applications, PyTorch neural networks, Streamlit ML apps, and Google Cloud BigQuery data pipelines.',
+  email: 'adityaofficial9918@gmail.com',
+  phone: '+91-7355583185',
+  github: 'https://github.com/adiitya-gupta',
+  linkedin: 'https://linkedin.com/in/adiitya-gupta',
+  twitter: 'https://twitter.com',
+  education: 'B.Tech (CSE) - Data Science & Machine Learning | Lovely Professional University (2024–2028)',
+  school: 'P.G. Senior Secondary School (Mathematics & Computer Science)'
+};
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'project-1',
+    title: 'Desi Cozy Restaurant Analytics',
+    category: 'Full-Stack & Business Intelligence',
+    description: 'Responsive restaurant management platform with role-based admin control, reservation engine, and business KPI dashboard.',
+    fullDescription: 'Desi Cozy Restaurant Analytics Platform streamlines digital restaurant operations and customer engagement. Features a role-based admin dashboard for menu management, customer records, reservation handling, and interactive revenue analytics.',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Dashboard Dev', 'Business Intelligence', 'REST APIs'],
+    color: '#06b6d4',
+    accentColor: '#38bdf8',
+    demoUrl: 'https://github.com/adiitya-gupta',
+    githubUrl: 'https://github.com/adiitya-gupta',
+    highlights: [
+      'Two responsive web apps for restaurant operations and digital management',
+      'Role-based admin dashboard for menu handling and customer records',
+      'Interactive analytical dashboards visualizing revenue trends, order stats & business KPIs'
+    ],
+    stats: [
+      { label: 'Role Access', value: 'Multi-Level' },
+      { label: 'Analytics', value: 'Real-Time' },
+      { label: 'UX Speed', value: '100%' }
+    ]
+  },
+  {
+    id: 'project-2',
+    title: 'CIFAR-10 Image Classifier',
+    category: 'Deep Learning & Computer Vision',
+    description: 'PyTorch Convolutional Neural Network classifying 32x32 image datasets across 10 categories with 72.3% test accuracy.',
+    fullDescription: 'Custom 3-block Convolutional Neural Network (~620K parameters) engineered in PyTorch with batch normalization, dropout regularization, and data augmentation techniques. Includes precision/recall/F1 metrics evaluation and confusion matrix visualizations using Matplotlib.',
+    techStack: ['PyTorch', 'torchvision', 'Python', 'Scikit-learn', 'Matplotlib', 'CNN'],
+    color: '#8b5cf6',
+    accentColor: '#a78bfa',
+    demoUrl: 'https://github.com/adiitya-gupta',
+    githubUrl: 'https://github.com/adiitya-gupta',
+    highlights: [
+      '72.3% Test Accuracy on 32x32 CIFAR-10 multi-class dataset',
+      'Optimized 3-block CNN architecture (~620k params) with BatchNorm & Dropout',
+      'Evaluated performance using Precision/Recall/F1 metrics & Confusion Matrix'
+    ],
+    stats: [
+      { label: 'Test Accuracy', value: '72.3%' },
+      { label: 'Parameters', value: '~620K' },
+      { label: 'Framework', value: 'PyTorch' }
+    ]
+  },
+  {
+    id: 'project-3',
+    title: 'NLP Sentiment Analysis App',
+    category: 'Natural Language Processing',
+    description: 'Real-time NLP sentiment analysis web app with text preprocessing, tokenization, and Scikit-learn classification (>85% accuracy).',
+    fullDescription: 'Built during Data Science Internship at Vorins Technologies. Features end-to-end NLP preprocessing pipeline including text cleaning, tokenization, stop-word removal, and TF-IDF vectorization. Deployed live with Streamlit.',
+    techStack: ['Python', 'Streamlit', 'NLP', 'Scikit-learn', 'TF-IDF', 'Machine Learning'],
+    color: '#10b981',
+    accentColor: '#34d399',
+    demoUrl: 'https://github.com/adiitya-gupta',
+    githubUrl: 'https://github.com/adiitya-gupta',
+    highlights: [
+      '>85% prediction accuracy with Scikit-learn classification models',
+      'End-to-end NLP pipeline: tokenization, stop-word removal & TF-IDF vectorizer',
+      'Real-time Streamlit web app interface for instant text sentiment prediction'
+    ],
+    stats: [
+      { label: 'Prediction Acc', value: '>85%' },
+      { label: 'Pipeline', value: 'TF-IDF' },
+      { label: 'Deploy Engine', value: 'Streamlit' }
+    ]
+  },
+  {
+    id: 'project-4',
+    title: 'GCP BigQuery Data Warehouse',
+    category: 'Cloud Data Engineering',
+    description: 'Cloud data warehouse pipelines, BigQuery analytics, and Compute Engine load-balanced deployments on Google Cloud.',
+    fullDescription: 'Engineered Google Cloud Platform infrastructure featuring BigQuery data warehouses, Compute Engine load balancing, and ML API integrations for high-availability cloud analytics.',
+    techStack: ['GCP', 'BigQuery', 'Compute Engine', 'SQL', 'Python', 'ML APIs'],
+    color: '#f59e0b',
+    accentColor: '#fbbf24',
+    demoUrl: 'https://github.com/adiitya-gupta',
+    githubUrl: 'https://github.com/adiitya-gupta',
+    highlights: [
+      'Certified Google Cloud Skill Badges in BigQuery, ML APIs & Load Balancing',
+      'Cloud data warehouse architecture & automated SQL query pipelines',
+      'High-availability Compute Engine server deployments'
+    ],
+    stats: [
+      { label: 'GCP Badges', value: '4 Certified' },
+      { label: 'Platform', value: 'Google Cloud' },
+      { label: 'Uptime', value: '99.9%' }
+    ]
+  }
+];
+
+export const SKILLS: Skill[] = [
+  { id: 'skill-1', name: 'Python', category: 'Backend', color: '#3776ab', icon: 'Code', level: 95 },
+  { id: 'skill-2', name: 'PyTorch & TF', category: '3D & Graphics', color: '#ee4c2c', icon: 'Cpu', level: 92 },
+  { id: 'skill-3', name: 'Machine Learning', category: '3D & Graphics', color: '#8b5cf6', icon: 'Activity', level: 94 },
+  { id: 'skill-4', name: 'Scikit-learn', category: '3D & Graphics', color: '#f7931e', icon: 'Layers', level: 90 },
+  { id: 'skill-5', name: 'GCP & BigQuery', category: 'Tools & DevOps', color: '#4285f4', icon: 'Server', level: 88 },
+  { id: 'skill-6', name: 'SQL & Pandas', category: 'Backend', color: '#336791', icon: 'FileCode', level: 92 },
+  { id: 'skill-7', name: 'Streamlit NLP', category: 'Frontend', color: '#ff4b4b', icon: 'Terminal', level: 88 },
+  { id: 'skill-8', name: 'JavaScript & HTML', category: 'Frontend', color: '#f7df1e', icon: 'Code', level: 90 },
+  { id: 'skill-9', name: 'Data Analytics', category: '3D & Graphics', color: '#10b981', icon: 'Activity', level: 92 },
+  { id: 'skill-10', name: 'Matplotlib/Seaborn', category: 'Frontend', color: '#1565c0', icon: 'Palette', level: 90 },
+  { id: 'skill-11', name: 'REST APIs & Git', category: 'Tools & DevOps', color: '#f05032', icon: 'GitBranch', level: 88 },
+  { id: 'skill-12', name: 'Compute Engine', category: 'Tools & DevOps', color: '#34a853', icon: 'Container', level: 85 }
+];
+
+export const MILESTONES: Milestone[] = [
+  {
+    id: 'm1',
+    year: 'Jun 2026 – Present',
+    role: 'Financial Analyst Intern',
+    organization: 'Wintern Whiz',
+    description: 'Analyzed financial datasets to identify business trends, supporting strategic decisions. Prepared KPI reports and quantitative analysis.',
+    skills: ['Financial Analytics', 'SQL', 'Python', 'KPI Reporting']
+  },
+  {
+    id: 'm2',
+    year: 'May 2026 – Present',
+    role: 'Ambassador Intern (Analytics & Reporting)',
+    organization: 'Emversity',
+    description: 'Managed CRM datasets ensuring high data accuracy and integrity. Generated performance reports & analytical operational insights.',
+    skills: ['CRM Analytics', 'Data Wrangling', 'Operational Insights']
+  },
+  {
+    id: 'm3',
+    year: 'Sep 2024 – Oct 2024',
+    role: 'Data Science Intern',
+    organization: 'Vorins Technologies',
+    description: 'Developed real-time Sentiment Analysis web app with Python, Streamlit & ML algorithms. Built NLP pipelines achieving >85% prediction accuracy.',
+    skills: ['Python', 'Streamlit', 'NLP', 'Scikit-learn', 'TF-IDF']
+  },
+  {
+    id: 'm4',
+    year: '2024 – 2028',
+    role: 'B.Tech CSE - Data Science & ML',
+    organization: 'Lovely Professional University',
+    description: 'Specializing in Data Science, Machine Learning, Deep Learning, Data Analytics & Cloud Systems.',
+    skills: ['Machine Learning', 'Deep Learning', 'GCP', 'Data Science']
+  }
+];
+
+export const CERTIFICATIONS = [
+  'Build a Data Warehouse with BigQuery | Google Cloud Skill Badge',
+  'Machine Learning APIs on Google Cloud | Google Cloud Skill Badge',
+  'Build a Website on Google Cloud | Google Cloud Skill Badge',
+  'Implement Load Balancing on Compute Engine | Google Cloud Skill Badge'
+];
+
+export const TELEPORT_TARGETS: TeleportTarget[] = [
+  { id: 'spawn', label: 'Start Plaza', iconName: 'Home', position: [0, 0.5, 5], rotationY: 0 },
+  { id: 'projects', label: 'Projects', iconName: 'Briefcase', position: [-28, 0.5, -20], rotationY: Math.PI / 4 },
+  { id: 'skills', label: 'Skills Crates', iconName: 'Boxes', position: [28, 0.5, -20], rotationY: -Math.PI / 4 },
+  { id: 'experience', label: 'Internships', iconName: 'Milestone', position: [-25, 0.5, 25], rotationY: Math.PI * 0.75 },
+  { id: 'contact', label: 'Contact Station', iconName: 'Mail', position: [25, 0.5, 25], rotationY: -Math.PI * 0.75 },
+  { id: 'playground', label: 'Playground', iconName: 'Gamepad2', position: [0, 0.5, -45], rotationY: Math.PI }
+];
+
+export const CAR_COLORS: CarColor[] = [
+  { name: 'Neon Cyber Cyan', hex: 0x00f3ff, css: '#00f3ff' },
+  { name: 'Sunset Crimson', hex: 0xff2a5f, css: '#ff2a5f' },
+  { name: 'Electric Violet', hex: 0x8b5cf6, css: '#8b5cf6' },
+  { name: 'Hyper Orange', hex: 0xff6b00, css: '#ff6b00' },
+  { name: 'Emerald Nitro', hex: 0x10b981, css: '#10b981' },
+  { name: 'Obsidian Black', hex: 0x111827, css: '#111827' }
+];
