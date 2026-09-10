@@ -13,6 +13,7 @@ import { AboutModal } from './components/ui/AboutModal';
 import { EasterEggModal } from './components/ui/EasterEggModal';
 import { TraditionalPortfolio } from './components/ui/TraditionalPortfolio';
 import { NavigationMenuModal } from './components/ui/NavigationMenuModal';
+import { MobileOnboardingOverlay } from './components/ui/MobileOnboardingOverlay';
 import type { VehicleControls, VehicleStats, Project, EnvironmentTheme } from './types/index';
 import { soundManager } from './utils/sound';
 
@@ -219,6 +220,33 @@ export const App: React.FC = () => {
     setIsDebugMode(debugState);
   };
 
+  // Canvas Direct Touch Drag Driving Handlers (Bruno Simon signature touch drag navigation)
+  const canvasTouchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const handleCanvasPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    soundManager.init();
+    canvasTouchStartRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleCanvasPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!canvasTouchStartRef.current) return;
+    const dx = e.clientX - canvasTouchStartRef.current.x;
+    const dy = e.clientY - canvasTouchStartRef.current.y;
+
+    controlsRef.current.left = dx < -15;
+    controlsRef.current.right = dx > 15;
+    controlsRef.current.forward = dy < -15;
+    controlsRef.current.backward = dy > 15;
+  };
+
+  const handleCanvasPointerUp = () => {
+    canvasTouchStartRef.current = null;
+    controlsRef.current.left = false;
+    controlsRef.current.right = false;
+    controlsRef.current.forward = false;
+    controlsRef.current.backward = false;
+  };
+
   const handleTouchControlChange = (updater: (prev: VehicleControls) => VehicleControls) => {
     controlsRef.current = updater(controlsRef.current);
   };
@@ -229,8 +257,15 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-slate-950 select-none">
-      {/* Three.js WebGL Canvas - mounted immediately */}
-      <canvas ref={canvasRef} className="w-full h-full block cursor-pointer" />
+      {/* Three.js WebGL Canvas - with Bruno Simon touch drag support */}
+      <canvas
+        ref={canvasRef}
+        onPointerDown={handleCanvasPointerDown}
+        onPointerMove={handleCanvasPointerMove}
+        onPointerUp={handleCanvasPointerUp}
+        onPointerCancel={handleCanvasPointerUp}
+        className="w-full h-full block cursor-pointer touch-none"
+      />
 
       {/* Loading Overlay */}
       {isLoading && (
@@ -259,6 +294,9 @@ export const App: React.FC = () => {
 
       {/* Speedometer & Nitro Overlay */}
       <Speedometer stats={vehicleStats} />
+
+      {/* Mobile Drive & Navigation Initial Guidance Banner */}
+      <MobileOnboardingOverlay />
 
       {/* On-Screen Touch / Mouse Controls */}
       <MobileControls

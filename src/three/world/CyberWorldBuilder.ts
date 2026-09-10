@@ -469,6 +469,39 @@ export class CyberWorldBuilder {
     this.physicsWorld.createBoxBody(1.2, 7, 1.2, 0, [-8, 3.5, -12]);
     this.physicsWorld.createBoxBody(1.2, 7, 1.2, 0, [8, 3.5, -12]);
 
+    // 3. Start Plaza Spawn Point Hologram Pad (Position: [0, 0.05, 5])
+    const spawnRingGeo = new THREE.RingGeometry(2.2, 3.2, 32);
+    const spawnRingMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, side: THREE.DoubleSide, transparent: true, opacity: 0.8 });
+    const spawnRingMesh = new THREE.Mesh(spawnRingGeo, spawnRingMat);
+    spawnRingMesh.rotation.x = -Math.PI / 2;
+    spawnRingMesh.position.set(0, 0.05, 5);
+    this.scene.add(spawnRingMesh);
+
+    // 4. Ground Direction Arrows painted on ground to guide navigation
+    const arrowTex = createNitroArrowTexture();
+    const arrowGeo = new THREE.PlaneGeometry(5, 5);
+    const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
+
+    // Forward Arrow (towards Projects)
+    const fwdArrow = new THREE.Mesh(arrowGeo, arrowMat);
+    fwdArrow.rotation.x = -Math.PI / 2;
+    fwdArrow.position.set(0, 0.06, -2);
+    this.scene.add(fwdArrow);
+
+    // Left Arrow (towards About & Resume)
+    const leftArrow = new THREE.Mesh(arrowGeo, arrowMat);
+    leftArrow.rotation.x = -Math.PI / 2;
+    leftArrow.rotation.z = Math.PI / 2;
+    leftArrow.position.set(-10, 0.06, 5);
+    this.scene.add(leftArrow);
+
+    // Right Arrow (towards Skills)
+    const rightArrow = new THREE.Mesh(arrowGeo, arrowMat);
+    rightArrow.rotation.x = -Math.PI / 2;
+    rightArrow.rotation.z = -Math.PI / 2;
+    rightArrow.position.set(10, 0.06, 5);
+    this.scene.add(rightArrow);
+
   }
 
   private buildAboutBuilding() {
