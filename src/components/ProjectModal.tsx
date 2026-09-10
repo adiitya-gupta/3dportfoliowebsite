@@ -62,7 +62,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* SCROLLABLE BODY CONTENT */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-pan-y flex-1 min-h-0 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950 overscroll-contain">
           <p className="text-slate-100 text-xs sm:text-sm leading-relaxed font-medium">{project.fullDescription}</p>
 
           {/* Live Project Stats (if available) */}

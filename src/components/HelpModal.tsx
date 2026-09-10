@@ -51,7 +51,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* BODY */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 flex flex-col gap-4 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-pan-y flex-1 min-h-0 flex flex-col gap-4 overscroll-contain">
           <div className="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 flex items-center justify-between">
             <span className="font-bold text-white text-xs">Steer & Drive</span>
             <div className="flex gap-1 font-mono">

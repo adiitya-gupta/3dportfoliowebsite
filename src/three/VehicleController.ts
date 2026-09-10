@@ -323,12 +323,12 @@ export class VehicleController {
     if (controls.left) targetSteer = 1;
     else if (controls.right) targetSteer = -1;
 
-    this.currentSteer = THREE.MathUtils.lerp(this.currentSteer, targetSteer, 0.25);
+    this.currentSteer = THREE.MathUtils.lerp(this.currentSteer, targetSteer, 0.35);
 
     if (Math.abs(this.currentSteer) > 0.01) {
       const turnDirection = this.currentSpeed >= -0.5 ? 1 : -1;
-      const speedFactor = Math.min(1.0, Math.abs(this.currentSpeed) / 3.0);
-      this.currentYaw += this.currentSteer * this.turnSpeed * turnDirection * (speedFactor > 0.1 ? speedFactor : 0.4) * clampedDelta;
+      const speedFactor = Math.min(1.0, Math.abs(this.currentSpeed) / 2.5);
+      this.currentYaw += this.currentSteer * this.turnSpeed * turnDirection * (speedFactor > 0.05 ? speedFactor : 0.5) * clampedDelta;
     }
 
     const quat = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.currentYaw);

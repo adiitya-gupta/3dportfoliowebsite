@@ -58,7 +58,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* SCROLLABLE BODY CONTENT */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 flex flex-col gap-5 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-pan-y flex-1 min-h-0 flex flex-col gap-5 overscroll-contain">
           {/* Professional Introduction */}
           <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col gap-2 shadow-md">
             <h3 className="text-sm font-black text-white flex items-center gap-2">

@@ -73,7 +73,9 @@ export class SceneManager {
     this.applyTheme(this.currentTheme);
 
     // Camera
-    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 800);
+    const aspect = window.innerWidth / window.innerHeight;
+    const initialFov = this.calculateFov(aspect);
+    this.camera = new THREE.PerspectiveCamera(initialFov, aspect, 0.1, 800);
     this.camera.position.set(0, 12, 18);
 
     // Lighting
@@ -85,6 +87,9 @@ export class SceneManager {
     this.worldBuilder = new CyberWorldBuilder(this.scene, this.physicsWorld);
 
     window.addEventListener('resize', this.onWindowResize.bind(this));
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', this.onWindowResize.bind(this));
+    }
   }
 
   private setupLighting() {
@@ -164,7 +169,14 @@ export class SceneManager {
     const carPos = this.vehicleController.mesh.position;
     const carQuat = this.vehicleController.mesh.quaternion;
 
-    const cameraOffset = new THREE.Vector3(0, 7.5, -15).applyQuaternion(carQuat);
+    const aspect = window.innerWidth / window.innerHeight;
+    const isMobilePortrait = aspect < 1.0;
+
+    // Dynamically adjust camera height & distance for mobile aspect ratios
+    const offsetY = isMobilePortrait ? 9.5 : 7.5;
+    const offsetZ = isMobilePortrait ? -18.5 : -15.0;
+
+    const cameraOffset = new THREE.Vector3(0, offsetY, offsetZ).applyQuaternion(carQuat);
     const targetCamPos = carPos.clone().add(cameraOffset);
 
     this.camera.position.lerp(targetCamPos, 0.08);
@@ -320,14 +332,32 @@ export class SceneManager {
     this.worldBuilder.resetSkillCrates();
   }
 
+  private calculateFov(aspect: number): number {
+    if (aspect < 1.2) {
+      // Dynamic vertical FOV expansion for portrait & narrow mobile screens
+      return Math.min(85, Math.max(60, 60 / (aspect * 0.85)));
+    }
+    return 60;
+  }
+
   private onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const aspect = width / height;
+
+    this.camera.aspect = aspect;
+    this.camera.fov = this.calculateFov(aspect);
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   }
 
   public dispose() {
     window.removeEventListener('resize', this.onWindowResize.bind(this));
+    if (window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', this.onWindowResize.bind(this));
+    }
     this.renderer.dispose();
   }
 }

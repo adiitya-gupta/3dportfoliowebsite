@@ -90,7 +90,7 @@ export const NavigationMenuModal: React.FC<NavigationMenuModalProps> = ({
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-4 sm:p-5 overflow-y-auto min-h-0 flex-1 overscroll-contain">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-4 sm:p-5 overflow-y-auto touch-pan-y min-h-0 flex-1 overscroll-contain">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (

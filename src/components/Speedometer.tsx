@@ -12,7 +12,7 @@ export const Speedometer: React.FC<SpeedometerProps> = ({ stats }) => {
   const speedPercentage = Math.min(100, (speed / maxSpeed) * 100);
 
   return (
-    <div className="fixed bottom-3 left-3 z-30 flex flex-col gap-1.5 pointer-events-none select-none max-w-[210px] sm:max-w-xs">
+    <div className="fixed bottom-[145px] left-3 sm:bottom-3 sm:left-3 z-20 flex flex-col gap-1.5 pointer-events-none select-none max-w-[190px] sm:max-w-xs scale-90 sm:scale-100 origin-bottom-left">
       {/* Current Zone Badge */}
       <div className="bg-slate-950/90 backdrop-blur-lg border border-slate-800/90 rounded-lg p-1 px-2.5 flex items-center gap-1.5 text-[10px] text-slate-300 w-max shadow-md">
         <Navigation className="w-3 h-3 text-cyan-400 animate-pulse shrink-0" />

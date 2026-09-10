@@ -80,7 +80,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* SCROLLABLE BODY CONTENT - PROPER FLEX MIN-H-0 SCROLL CONTAINER */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-pan-y flex-1 min-h-0 flex flex-col gap-6 selection:bg-cyan-500 selection:text-slate-950 overscroll-contain">
           {/* Education Section */}
           <div>
             <h3 className="text-xs font-black uppercase tracking-wider text-cyan-400 mb-2 flex items-center gap-1.5">

@@ -74,7 +74,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           </button>
         </div>
 
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 min-h-0 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto touch-pan-y flex-1 min-h-0 overscroll-contain">
 
         {isSubmitted ? (
           <div className="flex flex-col items-center justify-center py-10 text-center animate-in zoom-in-95 duration-200">
